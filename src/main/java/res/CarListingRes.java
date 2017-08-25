@@ -1,22 +1,40 @@
 package res;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import model.CarBlock;
+import model.CarListing;
 import parser.CarListingParser;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
-@Path("v1/listing")
+@Path("v1/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CarListingRes {
     private CarListingParser carListingParser;
 
-    private static final Logger LOG = LoggerFactory.getLogger(CarListingRes.class);
     public CarListingRes(CarListingParser carListingParser) {
-    this.carListingParser = carListingParser;
+        this.carListingParser = carListingParser;
     }
+
+    @POST
+    @Path("listing")
+    public CarListing createCarListing(CarListing carListing) {
+        return carListingParser.createCarListing(carListing);
+    }
+
+
+   @POST
+   @Path("block")
+    public CarBlock createCarBlock(CarBlock carBlock) {
+        return  carListingParser.createCarBlock(carBlock);
+    }
+
+    @GET
+    @Path("listing")
+    public List<CarListing> getCarsListing() {
+        return carListingParser.getLiveListings();
+    }
+
 }

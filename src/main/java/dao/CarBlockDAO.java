@@ -1,33 +1,33 @@
 package dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import model.CarDetails;
+import model.CarBlock;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class CarDetailsDAO extends AbstractDAO<CarDetails> {
+public class CarBlockDAO extends AbstractDAO<CarBlock> {
 
     private SessionFactory sessionFactory;
 
-    public CarDetailsDAO(SessionFactory sessionFactory) {
+    public CarBlockDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
         this.sessionFactory = sessionFactory;
     }
 
-    public CarDetails createOrUpdate(CarDetails carDetails) {
+    public CarBlock createOrUpdate(CarBlock carBlock) {
         Session session = sessionFactory.openSession();
         try {
             session = sessionFactory.openSession();
-            session.saveOrUpdate(carDetails);
+            session.saveOrUpdate(carBlock);
             //required when updating on a detached hibernate object
             session.flush();
-            return carDetails;
+            return carBlock;
         } finally {
             session.close();
         }
     }
 
-    public CarDetails getById(String id) {
+    public CarBlock getById(String id) {
         return get(id);
     }
 }

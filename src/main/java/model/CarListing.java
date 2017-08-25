@@ -4,10 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "car_block")
-public class CarBlock {
+@Table(name = "car_listing")
+public class CarListing {
 
     @Id
     private String id;
