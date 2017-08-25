@@ -1,5 +1,6 @@
 package res;
 
+import model.CarAvailability;
 import model.CarBlock;
 import model.CarListing;
 import parser.CarListingParser;
@@ -33,7 +34,7 @@ public class CarListingRes {
 
     @GET
     @Path("listing")
-    public List<CarListing> getCarsListing() {
+    public List<CarAvailability> getCarsListing() {
         return carListingParser.getLiveListings();
     }
 

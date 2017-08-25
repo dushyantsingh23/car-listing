@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class CarDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String brand;

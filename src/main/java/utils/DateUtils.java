@@ -1,21 +1,38 @@
 package utils;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class DateUtils {
 
-    public static final String ASIA_KOLKATA_ZONE_STRING = "Asia/Kolkata";
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-mm-dd hh:mm:ss";
+    public static final String DEFAULT_TIME_ZONE = "IST";
 
-    public static DateTime getISTDateTimeFromStringInFormat(String date, String format) {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern(format);
-        return formatter.parseDateTime(date).withZoneRetainFields(DateTimeZone.forID(ASIA_KOLKATA_ZONE_STRING));
+    public static String getISTTimeFromEpoch(Long epoch) {
+        Date date = new Date(epoch);
+        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+        format.setTimeZone(TimeZone.getTimeZone(DEFAULT_TIME_ZONE));
+        return format.format(date);
     }
 
-    public static Long getTimestampAfterEpoch(String date, String format) {
-        return DateUtils.getISTDateTimeFromStringInFormat(date, format).getMillis() / 1000;
+    public static Long getEpochFromISTDate(String date) {
+        return getEpochFromDateInFormat(date, DEFAULT_DATE_FORMAT, DEFAULT_TIME_ZONE);
+    }
+
+    public static Long getEpochFromDateInFormat(String date, String format, String timeZone) {
+
+        SimpleDateFormat in = new SimpleDateFormat(format);
+        in.setTimeZone(TimeZone.getTimeZone(timeZone));
+        Date outDate = null;
+        try {
+            outDate = in.parse(date);
+            return outDate.getTime();
+        } catch (ParseException e) {
+            throw new RuntimeException("Unable to format date");
+        }
     }
 
 }

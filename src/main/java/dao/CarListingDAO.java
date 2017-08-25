@@ -1,9 +1,14 @@
 package dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
+import model.CarBlock;
 import model.CarListing;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
 
 public class CarListingDAO extends AbstractDAO<CarListing> {
 
@@ -29,5 +34,17 @@ public class CarListingDAO extends AbstractDAO<CarListing> {
 
     public CarListing getById(String id) {
         return get(id);
+    }
+
+    public List<CarListing> getCarListingByTime(String dateTime) {
+        Session session = sessionFactory.openSession();
+        try {
+            Criteria criteria = session.createCriteria(CarBlock.class);
+            criteria.add(Restrictions.ge("startTime", dateTime));
+            criteria.add(Restrictions.le("endTime", dateTime));
+            return criteria.list();
+        } finally {
+            session.close();
+        }
     }
 }
