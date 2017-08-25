@@ -7,8 +7,9 @@ public class CarDetailsParser {
 
 
     private CarDetailsDAO carDetailsDAO;
+
     public CarDetailsParser(CarDetailsDAO carDetailsDAO) {
-         this.carDetailsDAO = carDetailsDAO;
+        this.carDetailsDAO = carDetailsDAO;
     }
 
 

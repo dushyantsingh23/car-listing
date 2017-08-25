@@ -26,16 +26,16 @@ public class CarListingRes {
     }
 
 
-   @POST
-   @Path("block")
+    @POST
+    @Path("block")
     public CarBlock createCarBlock(CarBlock carBlock) {
-        return  carListingParser.createCarBlock(carBlock);
+        return carListingParser.createCarBlock(carBlock);
     }
 
     @GET
-    @Path("listing")
-    public List<CarAvailability> getCarsListing() {
-        return carListingParser.getLiveListings();
+    @Path("search")
+    public List<CarAvailability> getCarsListing(@QueryParam("time") Long searchTime) {
+        return carListingParser.getLiveListings(searchTime);
     }
 
 }

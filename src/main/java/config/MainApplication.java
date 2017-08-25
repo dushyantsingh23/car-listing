@@ -18,16 +18,17 @@ import parser.CarListingParser;
 import res.CarDetailsRes;
 import res.CarListingRes;
 
-public class MainApplication extends Application<Config>  {
+public class MainApplication extends Application<Config> {
 
 
     private final HibernateBundle<Config> hibernateBundle =
-            new HibernateBundle<Config>(Object.class, CarDetails.class, CarListing.class, CarBlock.class) { //TODO add all models
+            new HibernateBundle<Config>(Object.class, CarDetails.class, CarListing.class, CarBlock.class) {
 
                 public DataSourceFactory getDataSourceFactory(Config configuration) {
                     return configuration.getDataSourceFactory();
                 }
             };
+
     public static void main(String[] args) throws Exception {
         new MainApplication().run(args);
     }

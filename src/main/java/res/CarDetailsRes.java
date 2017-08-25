@@ -20,14 +20,14 @@ public class CarDetailsRes {
     }
 
     @POST
-    public CarDetails createCar(CarDetails  carDetailsRequest) {
+    public CarDetails createCar(CarDetails carDetailsRequest) {
 
         return carDetailsParser.createCar(carDetailsRequest);
     }
 
     @GET
     @Path("/{id}")
-    public CarDetails getCarById(@PathParam("id")  String carId) {
+    public CarDetails getCarById(@PathParam("id") String carId) {
 
         return carDetailsParser.getCarById(carId);
     }

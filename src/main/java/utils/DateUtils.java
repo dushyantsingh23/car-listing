@@ -35,4 +35,16 @@ public class DateUtils {
         }
     }
 
+    public static Boolean isDateInFormat(String date) {
+        Date d = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+            d = sdf.parse(date);
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return d != null;
+    }
+
 }
