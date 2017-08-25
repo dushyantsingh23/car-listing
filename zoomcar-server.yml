@@ -1,11 +1,7 @@
 server:
   applicationConnectors:
   - type: http
-    port: 9595  #Change applicationPort value when this is changed
-  adminConnectors:
-  - type: http
-    port: 9596
-
+    port: 9090
 
 logging:
   level: INFO
