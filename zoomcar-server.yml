@@ -1,0 +1,26 @@
+server:
+  applicationConnectors:
+  - type: http
+    port: 9595  #Change applicationPort value when this is changed
+  adminConnectors:
+  - type: http
+    port: 9596
+
+
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: /var/log/server-logs.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: /var/log/server-logs-%d.log
+      archivedFileCount: 5
+      timeZone: IST
+      logFormat: "%-5level %date{ISO8601, IST} [%logger{0}] [%X{transactionId}] [%X{sessionId}]: %message%n"
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: zoom
+  password: password
+  url: jdbc:mysql://localhost:3306/zoomcar_db
