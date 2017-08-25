@@ -35,12 +35,13 @@ public class CarBlockDAO extends AbstractDAO<CarBlock> {
         return get(id);
     }
 
-    public List<CarBlock> getCarBlocksBytime(String dateTime) {
+    public List<CarBlock> getCarBlocksByTime(String dateTime) {
         Session session = sessionFactory.openSession();
         try {
             Criteria criteria = session.createCriteria(CarBlock.class);
             criteria.add(Restrictions.ge("startTime", dateTime));
             criteria.add(Restrictions.le("endTime", dateTime));
+
             return criteria.list();
         } finally {
             session.close();

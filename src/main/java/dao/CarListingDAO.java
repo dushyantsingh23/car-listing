@@ -32,16 +32,14 @@ public class CarListingDAO extends AbstractDAO<CarListing> {
         }
     }
 
-    public CarListing getById(String id) {
-        return get(id);
-    }
-
-    public List<CarListing> getCarListingByTime(String dateTime) {
+    public List<CarListing> getCarListingByTimeAndIds(String dateTime, String[] blockedCars) {
         Session session = sessionFactory.openSession();
         try {
             Criteria criteria = session.createCriteria(CarBlock.class);
             criteria.add(Restrictions.ge("startTime", dateTime));
             criteria.add(Restrictions.le("endTime", dateTime));
+            criteria.add(Restrictions.not(Restrictions.in("carId", blockedCars)));
+
             return criteria.list();
         } finally {
             session.close();

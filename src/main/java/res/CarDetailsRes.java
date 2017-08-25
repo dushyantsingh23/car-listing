@@ -1,6 +1,7 @@
 package res;
 
 
+import io.dropwizard.hibernate.UnitOfWork;
 import model.CarDetails;
 import parser.CarDetailsParser;
 
@@ -20,6 +21,7 @@ public class CarDetailsRes {
     }
 
     @POST
+    @UnitOfWork
     public CarDetails createCar(CarDetails carDetailsRequest) {
 
         return carDetailsParser.createCar(carDetailsRequest);
@@ -27,6 +29,7 @@ public class CarDetailsRes {
 
     @GET
     @Path("/{id}")
+    @UnitOfWork
     public CarDetails getCarById(@PathParam("id") String carId) {
 
         return carDetailsParser.getCarById(carId);

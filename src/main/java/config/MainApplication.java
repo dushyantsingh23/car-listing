@@ -55,7 +55,7 @@ public class MainApplication extends Application<Config> {
         final CarListingDAO carListingDAO = new CarListingDAO(hibernateBundle.getSessionFactory());
         final CarBlockDAO carBlockDAO = new CarBlockDAO(hibernateBundle.getSessionFactory());
 
-        final CarListingParser carListingParser = new CarListingParser(carBlockDAO, carListingDAO);
+        final CarListingParser carListingParser = new CarListingParser(carBlockDAO, carListingDAO, carDetailsDAO);
 
 
         environment.jersey().register(new CarListingRes(carListingParser));

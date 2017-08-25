@@ -1,7 +1,8 @@
 package res;
 
-import model.CarAvailability;
+import io.dropwizard.hibernate.UnitOfWork;
 import model.CarBlock;
+import model.CarDetails;
 import model.CarListing;
 import parser.CarListingParser;
 
@@ -21,6 +22,7 @@ public class CarListingRes {
 
     @POST
     @Path("listing")
+    @UnitOfWork
     public CarListing createCarListing(CarListing carListing) {
         return carListingParser.createCarListing(carListing);
     }
@@ -28,13 +30,15 @@ public class CarListingRes {
 
     @POST
     @Path("block")
+    @UnitOfWork
     public CarBlock createCarBlock(CarBlock carBlock) {
         return carListingParser.createCarBlock(carBlock);
     }
 
     @GET
     @Path("search")
-    public List<CarAvailability> getCarsListing(@QueryParam("time") Long searchTime) {
+    @UnitOfWork
+    public List<CarDetails> getCarsListing(@QueryParam("time") Long searchTime) {
         return carListingParser.getLiveListings(searchTime);
     }
 
