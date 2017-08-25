@@ -6,9 +6,6 @@ import com.google.gson.JsonParser;
 
 import java.util.UUID;
 
-/**
- * Created by Hades on 21/02/17.
- */
 public class Utils {
 
     public static Boolean isDev = true;

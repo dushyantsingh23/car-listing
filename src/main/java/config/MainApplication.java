@@ -12,9 +12,6 @@ import model.CarDetails;
 import parser.CarListingParser;
 import res.CarListingRes;
 
-/**
- * Created by Hades on 01/02/17.
- */
 public class MainApplication extends Application<Config>  {
 
 

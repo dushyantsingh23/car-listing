@@ -9,10 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- * Created by Hades on 22/02/17.
- */
-
 @Path("v1/listing")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
