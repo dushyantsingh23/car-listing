@@ -1,11 +1,26 @@
 package model;
 
-/**
- * Created with IntelliJ IDEA.
- * User: dushyant
- * Date: 25/8/17
- * Time: 11:57 PM
- * To change this template use File | Settings | File Templates.
- */
+import java.util.List;
+
 public class CarAvailability {
+
+    private CarDetails carDetails;
+
+    private List<Availability> timings;
+
+    public CarDetails getCarDetails() {
+        return carDetails;
+    }
+
+    public void setCarDetails(CarDetails carDetails) {
+        this.carDetails = carDetails;
+    }
+
+    public List<Availability> getTimings() {
+        return timings;
+    }
+
+    public void setTimings(List<Availability> timings) {
+        this.timings = timings;
+    }
 }

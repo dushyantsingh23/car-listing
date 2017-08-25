@@ -1,11 +1,24 @@
 package model;
 
-/**
- * Created with IntelliJ IDEA.
- * User: dushyant
- * Date: 25/8/17
- * Time: 11:58 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Availability {
+
+    private String startTime;
+
+    private String endTime;
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 }
