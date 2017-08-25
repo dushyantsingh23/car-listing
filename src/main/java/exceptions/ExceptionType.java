@@ -5,7 +5,8 @@ import javax.ws.rs.core.Response;
 
 public enum ExceptionType {
 
-    BAD_REQUEST("2300", Response.Status.BAD_REQUEST, "Params/Data are missing or invalid");
+    BAD_REQUEST("1", Response.Status.BAD_REQUEST, "Params/Data are missing or invalid"),
+    NOT_FOUND("2", Response.Status.NOT_FOUND, "Resource not found");
     private Response.Status status;
     private ExceptionInfo exceptionInfo;
 

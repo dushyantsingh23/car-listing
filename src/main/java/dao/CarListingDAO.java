@@ -1,7 +1,6 @@
 package dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
-import model.CarBlock;
 import model.CarListing;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -20,29 +19,19 @@ public class CarListingDAO extends AbstractDAO<CarListing> {
     }
 
     public CarListing createOrUpdate(CarListing carListing) {
-        Session session = sessionFactory.openSession();
-        try {
-            session = sessionFactory.openSession();
-            session.saveOrUpdate(carListing);
-            //required when updating on a detached hibernate object
-            session.flush();
-            return carListing;
-        } finally {
-            session.close();
-        }
+        persist(carListing);
+        return carListing;
     }
 
     public List<CarListing> getCarListingByTimeAndIds(String dateTime, String[] blockedCars) {
-        Session session = sessionFactory.openSession();
-        try {
-            Criteria criteria = session.createCriteria(CarBlock.class);
-            criteria.add(Restrictions.ge("startTime", dateTime));
-            criteria.add(Restrictions.le("endTime", dateTime));
-            criteria.add(Restrictions.not(Restrictions.in("carId", blockedCars)));
+            Session session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(CarListing.class);
+            criteria.add(Restrictions.le("startTime", dateTime));
+            criteria.add(Restrictions.ge("endTime", dateTime));
+            if (blockedCars.length > 0) {
+                criteria.add(Restrictions.not(Restrictions.in("carId", blockedCars)));
+            }
 
             return criteria.list();
-        } finally {
-            session.close();
-        }
     }
 }

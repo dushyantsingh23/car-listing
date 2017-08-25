@@ -3,13 +3,12 @@ package parser;
 import dao.CarBlockDAO;
 import dao.CarDetailsDAO;
 import dao.CarListingDAO;
-import exceptions.ExceptionType;
-import exceptions.ListingException;
 import model.CarBlock;
 import model.CarDetails;
 import model.CarListing;
 import utils.DateUtils;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,35 +28,33 @@ public class CarListingParser {
         this.carDetailsDAO = carDetailsDAO;
     }
 
-    private void validateCarBlockRequest(CarBlock carBlock) {
-        if (!(DateUtils.isDateInFormat(carBlock.getStartTime()) &&
-                DateUtils.isDateInFormat(carBlock.getEndTime()))) {
-            throw new ListingException(ExceptionType.BAD_REQUEST, "Invalid date format");
-        }
-    }
-
     public CarBlock createCarBlock(CarBlock carBlock) {
-        validateCarBlockRequest(carBlock);
+        //validateCarTimingsRequest(carBlock);
 
         return carBlockDAO.createOrUpdate(carBlock);
     }
 
-    private void validateCarListingRequest(CarListing carListing) {
-        if (!(DateUtils.isDateInFormat(carListing.getStartTime()) &&
-                DateUtils.isDateInFormat(carListing.getEndTime()))) {
-            throw new ListingException(ExceptionType.BAD_REQUEST, "Invalid date format");
-        }
-    }
+//    private void validateCarTimingsRequest(CarTimings carTimings) {
+//        if (!(DateUtils.isDateInFormat(carTimings.getStartTime()) &&
+//                DateUtils.isDateInFormat(carTimings.getEndTime()))) {
+//            throw new ListingException(ExceptionType.BAD_REQUEST, "Invalid date format");
+//        }
+//
+//        CarDetails carDetails = carDetailsDAO.getById(carTimings.getCarId());
+//        if (carDetails == null) {
+//            throw new ListingException(ExceptionType.NOT_FOUND, "No car found with given id");
+//        }
+//    }
 
     public CarListing createCarListing(CarListing carListing) {
-        validateCarListingRequest(carListing);
+        //validateCarTimingsRequest(carListing);
 
         return carListingDAO.createOrUpdate(carListing);
     }
 
     public List<CarDetails> getLiveListings(Long searchTime) {
         if (searchTime == null) {
-            searchTime = System.currentTimeMillis() / 1000;
+            searchTime = Instant.now().getEpochSecond();
         }
         String date = DateUtils.getISTTimeFromEpoch(searchTime);
         List<CarBlock> carBlocks = carBlockDAO.getCarBlocksByTime(date);

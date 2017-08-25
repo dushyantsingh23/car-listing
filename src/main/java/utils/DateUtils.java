@@ -1,21 +1,26 @@
 package utils;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
 public class DateUtils {
 
-    public static final String DEFAULT_DATE_FORMAT = "yyyy-mm-dd hh:mm:ss";
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
     public static final String DEFAULT_TIME_ZONE = "IST";
 
     public static String getISTTimeFromEpoch(Long epoch) {
-        Date date = new Date(epoch);
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        format.setTimeZone(TimeZone.getTimeZone(DEFAULT_TIME_ZONE));
-        return format.format(date);
+
+        LocalDateTime date =
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(epoch*1000), ZoneId.of(ZoneOffset.of("+05:30").getId()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT);
+        return date.format(formatter);
     }
 
     public static Long getEpochFromISTDate(String date) {

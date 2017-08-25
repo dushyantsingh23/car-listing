@@ -39,8 +39,8 @@ public class CarBlockDAO extends AbstractDAO<CarBlock> {
         Session session = sessionFactory.openSession();
         try {
             Criteria criteria = session.createCriteria(CarBlock.class);
-            criteria.add(Restrictions.ge("startTime", dateTime));
-            criteria.add(Restrictions.le("endTime", dateTime));
+            criteria.add(Restrictions.le("startTime", dateTime));
+            criteria.add(Restrictions.ge("endTime", dateTime));
 
             return criteria.list();
         } finally {

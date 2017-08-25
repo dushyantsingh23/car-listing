@@ -32,6 +32,10 @@ public class CarDetailsDAO extends AbstractDAO<CarDetails> {
         }
     }
 
+    public CarDetails getById(String id) {
+        return get(id);
+    }
+
     public List<CarDetails> getBulkDetailsByIds(String[] carIds) {
         Session session = sessionFactory.openSession();
         try {
