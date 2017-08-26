@@ -6,7 +6,7 @@ Dropwizard project for car listings
 
 3.Run Mysql Server on local.
 
-4. Create database code(zoomcar_db), details about the user can be found at zoomcar-server.yml
+4. Create new database name zoomcar_db, details about the user can be found at zoomcar-server.yml
 
 5. Create table using the following queries : 
 
@@ -34,7 +34,7 @@ Dropwizard project for car listings
       primary key(id)) engine = INNODB;`
      
      
-6. run the jar file as `java -jar target/car-listing-1.0_SNAPSHOT.jar server  zoomcar-server.yml`
+6. run the jar file as `java -jar target/car-listing-1.0_SNAPSHOT.jar server  zoomcar-server.yml`. The server runs at `http://localhost:9090/`
 
 7. Following are the APIs and their purpose:
  
