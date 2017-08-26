@@ -18,7 +18,7 @@ public class DateUtils {
     public static String getISTTimeFromEpoch(Long epoch) {
 
         LocalDateTime date =
-                LocalDateTime.ofInstant(Instant.ofEpochMilli(epoch*1000), ZoneId.of(ZoneOffset.of("+05:30").getId()));
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(epoch * 1000), ZoneId.of(ZoneOffset.of("+05:30").getId()));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT);
         return date.format(formatter);
     }
