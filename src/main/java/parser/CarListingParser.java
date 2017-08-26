@@ -52,6 +52,7 @@ public class CarListingParser {
         return carListingDAO.createOrUpdate(carListing);
     }
 
+    //TODO - This can be done in 1 db calls using joins, instead of doing this magic
     public List<CarDetails> getLiveListings(Long searchTime) {
         if (searchTime == null) {
             searchTime = Instant.now().getEpochSecond();
