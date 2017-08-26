@@ -6,7 +6,7 @@ Dropwizard project for car listings
 
 3.Run Mysql Server on local.
 
-4. Create database code(zoomcar_db)
+4. Create database code(zoomcar_db), details about the user can be found at zoomcar-server.yml
 
 5. Create table using the following queries : 
 
@@ -35,3 +35,15 @@ Dropwizard project for car listings
      
      
 6. run the jar file as `java -jar target/car-listing-1.0_SNAPSHOT.jar server  zoomcar-server.yml`
+
+7. Following are the APIs and their purpose:
+ 
+      `POST /v1/cars` - To create a carDetail entity
+      
+      `GET /v1/cars/{id}` - To get a car by id
+      
+      `POST /v1/listings` - To create a listing
+      
+      `POST /v1/block` - To create a block
+      
+      `GET /v1/search?time={epoch time in seconds}` - to a list of Car details currently active. if no Query param given then cucrrent time will be considered
