@@ -10,7 +10,7 @@ Dropwizard project for car listings
 
 5. Create table using the following queries : 
 
-      ```create table car_details( 
+      `create table car_details( 
       id integer not null auto_increment, 
       brand varchar(50), 
       model varchar(50), 
@@ -31,7 +31,7 @@ Dropwizard project for car listings
       carId varchar(50),
       startTime DateTime,
       endTime DateTime,
-      primary key(id)) engine = INNODB;```
+      primary key(id)) engine = INNODB;`
      
      
 6. Create a log file for the server by using the following commands.
