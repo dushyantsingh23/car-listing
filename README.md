@@ -34,7 +34,13 @@ Dropwizard project for car listings
       primary key(id)) engine = INNODB;```
      
      
-6. run the jar file as `java -jar target/car-listing-1.0_SNAPSHOT.jar server  zoomcar-server.yml`. The server runs at `http://localhost:9090/`
+6. Create a log file for the server by using the following commands.
+
+      ``sudo touch /var/log/server-logs.log``
+      
+      ``sudo chmod 775 /var/log/server-logs.log``
+
+Run the jar file as `java -jar target/car-listing-1.0_SNAPSHOT.jar server  zoomcar-server.yml`. The server runs at `http://localhost:9090/`.
 
 7. Following are the APIs and their purpose, also below added curl statements to populate those:
  
